@@ -1,22 +1,22 @@
-CFLAGS = -Wall -Wextra -lm
+CFLAGS = -Wall -Wextra -lm -lsqlite3
 CCHECKS = -fsanitize=address
 
-temp: build_temp run_temp clean_temp  
+main: build_main run_main clean_main  
 	@echo [INFO] done
 
-build_temp: temp.c
+build_main: main.c
 	@echo [INFO] building
-	@gcc ./temp.c $(CFLAGS) -o temp
+	@gcc ./main.c $(CFLAGS) -o main
 
-run_temp:
+run_main:
 	@echo
-	./temp
+	./main
 
-clean_temp:
+clean_main:
 	@echo
-	rm temp
+	rm main
 
-debug_build_temp: temp.c
-	@gcc ./temp.c $(CFLAGS) -g -o temp
-# valgrind -s --leak-check=full ./temp
+debug_build_main: main.c
+	@gcc ./main.c $(CFLAGS) -g -o main
+# valgrind -s --leak-check=full ./main
 # cloc --exclude-lang=JSON,make .
